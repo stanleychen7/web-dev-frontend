@@ -13,8 +13,8 @@ const AllStudentsView = ({ allStudents = [], onDeleteStudent }) => (
       <ul style={{ listStyle: "none", padding: 0 }}>
         {allStudents.map(student => (
           <li key={student.id} style={{ marginBottom: "1em", display: "flex", alignItems: "center" }}>
-            <Link to={`/student/${student.id}`}>
-              <strong>{student.firstname} {student.lastname}</strong>
+            <Link to={`/students/${student.id}`}>
+              <strong>{student.firstName} {student.lastName}</strong>
             </Link>
             <button
               style={{ marginLeft: "1em" }}

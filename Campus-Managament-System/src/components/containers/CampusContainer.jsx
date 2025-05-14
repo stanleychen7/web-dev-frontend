@@ -7,8 +7,8 @@ import { useParams } from 'react-router-dom'
 import CampusView from "../views/CampusView"
 
 class CampusContainer extends Component {
-    componentdidMount() {
-        this.props.fetchCampus(this.props.match.campusId);
+    componentDidMount() {
+        this.props.fetchCampus(this.props.campusId);
     }
 
     render () {
@@ -21,17 +21,13 @@ class CampusContainer extends Component {
     }
 }
 
-const mapState = (state) => {
-    return {
-        campus: state.campus,
-    };
-};
+const mapState = (state) => ({
+    campus: state.campus,
+});
 
-const mapDispatch = (dispatch) => {
-    return {
-        fetchCampus: (id) => dispatch(fetchCampusThunk(id)),
-    };
-};
+const mapDispatch = (dispatch) => ({
+    fetchCampus: (id) => dispatch(fetchCampusThunk(id)),
+});
 
 const CampusContainerWrapper = (props) => {
     const { campusId } = useParams();

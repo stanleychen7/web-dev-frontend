@@ -24,9 +24,11 @@ const AllCampusesView = ({ allCampuses = [], onDeleteCampus }) => (
               <Link to={`/campuses/${campus.id}`}>
                 <strong style={{ fontSize: "1.2em" }}>{campus.name}</strong>
               </Link>
-              <div>
+              <div style={{ marginTop: "0.5em" }}>
+                <Link to={`/campuses/${campus.id}/edit`}>
+                  <button style={{ marginRight: "0.5em" }}>Edit</button>
+                </Link>
                 <button
-                  style={{ marginTop: "0.5em" }}
                   onClick={() => onDeleteCampus && onDeleteCampus(campus.id)}
                 >
                   Delete

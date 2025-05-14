@@ -2,8 +2,10 @@ import React from "react";
 
 const DEFAULT_IMAGE = "https://via.placeholder.com/300x200?text=No+Image";
 
-const CampusView = ({ campus, students = [] }) => {
+const CampusView = ({ campus }) => {
   if (!campus) return <p>Campus not found.</p>;
+
+  const students = campus.Students || [];
 
   return (
     <div>
@@ -23,7 +25,7 @@ const CampusView = ({ campus, students = [] }) => {
         <ul>
           {students.map(student => (
             <li key={student.id}>
-              {student.firstname} {student.lastname}
+              {student.firstName} {student.lastName}
             </li>
           ))}
         </ul>

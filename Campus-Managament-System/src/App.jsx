@@ -6,8 +6,9 @@ import {
   StudentContainer,
   AllStudentsContainer,
   CampusContainer,
-  NewStudentContainerWrapper,
-  NewCampusContainerWrapper
+  NewStudentContainer,
+  NewCampusContainer,
+  EditCampus
 } from './components/containers';
 
 const App = () => {
@@ -19,8 +20,9 @@ const App = () => {
         <Route path="/students/:studentId" element={<StudentContainer/>} />
         <Route path="/campuses/:campusId" element={<CampusContainer/>} />
         <Route path='/students' element={<AllStudentsContainer/>} />
-        <Route path='/newStudent' element={<NewStudentContainerWrapper/>} />
-        <Route path='/newCampus' element={<NewCampusContainerWrapper/>} />
+        <Route path='/newStudent' element={<NewStudentContainer/>} />
+        <Route path='/newCampus' element={<NewCampusContainer/>} />
+        <Route path='/campuses/:campusId/edit' element={<EditCampus/>} />
       </Routes>        
     </div>
   );
