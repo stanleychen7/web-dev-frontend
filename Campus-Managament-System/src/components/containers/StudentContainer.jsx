@@ -3,12 +3,12 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import StudentView from '../views/StudentView'
 import { fetchStudentThunk } from '../../store/thunk';
+import { useParams } from 'react-router-dom';
 
 class StudentContainer extends Component {
     componentDidMount () {
-        this.props.fetchStudents(this.props.match.params.id);
+        this.props.fetchStudent(this.props.studentId);
     }
-
 
     render () {
         return (
@@ -32,5 +32,10 @@ const mapDispatch = (dispatch) => {
     };
 };
 
-export default connect(mapState, mapDispatch)(StudentContainer);
+// Wrapper to inject params as props
+const StudentContainerWrapper = (props) => {
+    const { studentId } = useParams();
+    return <StudentContainer {...props} studentId={studentId} />;
+};
 
+export default connect(mapState, mapDispatch)(StudentContainerWrapper);

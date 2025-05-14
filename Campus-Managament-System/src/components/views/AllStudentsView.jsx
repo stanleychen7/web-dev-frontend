@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const AllStudentsView = ({ allStudents = [], onDeleteStudent }) => (
   <div>
     <h1>All Students</h1>
-    <Link to="/student/new">
+    <Link to="/newStudent">
       <button>Add New Student</button>
     </Link>
     {(!Array.isArray(allStudents) || allStudents.length === 0) ? (

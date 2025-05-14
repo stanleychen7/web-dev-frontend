@@ -2,12 +2,13 @@ import Header from './Header'
 import { React, Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchCampusThunk } from '../../store/thunk'
+import { useParams } from 'react-router-dom'
 
-import CampusView from "../views"
+import CampusView from "../views/CampusView"
 
 class CampusContainer extends Component {
     componentdidMount() {
-        this.props.fetchCampus(this.props.match.params.id);
+        this.props.fetchCampus(this.props.match.campusId);
     }
 
     render () {
@@ -32,4 +33,9 @@ const mapDispatch = (dispatch) => {
     };
 };
 
-export default connect(mapState, mapDispatch)(CampusContainer);
+const CampusContainerWrapper = (props) => {
+    const { campusId } = useParams();
+    return <CampusContainer {...props} campusId={campusId}/>
+}
+
+export default connect(mapState, mapDispatch)(CampusContainerWrapper);

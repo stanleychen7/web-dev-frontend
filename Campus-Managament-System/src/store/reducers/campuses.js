@@ -5,7 +5,6 @@ const allCampuses = (state = [], action) => {
         case at.FETCH_ALL_CAMPUSES:
             return action.payload;
         case at.FETCH_CAMPUS:
-            // Add or update the single campus in the list
             const campus = action.payload;
             const exists = state.find(c => c.id === campus.id);
             if (exists) {

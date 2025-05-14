@@ -1,64 +1,30 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const SingleCampusView = ({
-  campus,
-  students = [],
-  onDeleteCampus,
-  onDeleteStudent,
-  onAddStudent,
-}) => {
-  if (!campus) return <p>Campus not found.</p>;
+const SingleStudentView = ({ student }) => {
+  if (!student) return <p>Student not found.</p>;
 
   return (
     <div>
-      <h1>{campus.name}</h1>
-      <p><strong>Address:</strong> {campus.address}</p>
-      <p><strong>Description:</strong> {campus.description}</p>
-      {campus.imageUrl && (
-        <img src={campus.imageUrl} alt={campus.name} style={{ maxWidth: "300px" }} />
-      )}
-
-      <div style={{ margin: "1em 0" }}>
-        <Link to={`/campus/${campus.id}/edit`}>
-          <button>Edit Campus</button>
-        </Link>
-        <button onClick={() => onDeleteCampus && onDeleteCampus(campus.id)} style={{ marginLeft: "1em" }}>
-          Delete Campus
-        </button>
-      </div>
-
-      <h2>Enrolled Students</h2>
-      {students.length === 0 ? (
-        <p>No students are enrolled at this campus.</p>
-      ) : (
-        <ul>
-          {students.map(student => (
-            <li key={student.id}>
-              <Link to={`/student/${student.id}`}>
-                {student.firstname} {student.lastname}
-              </Link>
-              <button
-                style={{ marginLeft: "1em" }}
-                onClick={() => onDeleteStudent && onDeleteStudent(student.id)}
-              >
-                Remove
-              </button>
-            </li>
-          ))}
-        </ul>
-      )}
-
-      <div style={{ marginTop: "1em" }}>
-        <Link to={`/student/new?campusId=${campus.id}`}>
-          <button>Add New Student</button>
-        </Link>
-        <Link to={`/student/add-existing?campusId=${campus.id}`}>
-          <button style={{ marginLeft: "1em" }}>Add Existing Student</button>
-        </Link>
-      </div>
+      <h1>
+        {student.firstname} {student.lastname}
+      </h1>
+      <p>
+        <strong>Email:</strong> {student.email}
+      </p>
+      <p>
+        <strong>GPA:</strong> {student.gpa !== undefined && student.gpa !== null ? student.gpa : "N/A"}
+      </p>
+      <p>
+        <strong>Campus:</strong>{" "}
+        {student.campus ? (
+          <Link to={`/campuses/${student.campus.id}`}>{student.campus.name}</Link>
+        ) : (
+          <span>This student is not enrolled in any campus.</span>
+        )}
+      </p>
     </div>
   );
 };
 
-export default SingleCampusView;
+export default SingleStudentView;

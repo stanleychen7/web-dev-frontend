@@ -6,6 +6,8 @@ import {
   StudentContainer,
   AllStudentsContainer,
   CampusContainer,
+  NewStudentContainerWrapper,
+  NewCampusContainerWrapper
 } from './components/containers';
 
 const App = () => {
@@ -14,9 +16,11 @@ const App = () => {
       <Routes>
         <Route path="/" element={<HomePageContainer />} />
         <Route path="/campuses" element={<AllCampusesContainer />} />
-        <Route path="/student/:studentId" element={<StudentContainer/>} />
-        <Route path="/campus/:campusId" element={<CampusContainer/>} />
+        <Route path="/students/:studentId" element={<StudentContainer/>} />
+        <Route path="/campuses/:campusId" element={<CampusContainer/>} />
         <Route path='/students' element={<AllStudentsContainer/>} />
+        <Route path='/newStudent' element={<NewStudentContainerWrapper/>} />
+        <Route path='/newCampus' element={<NewCampusContainerWrapper/>} />
       </Routes>        
     </div>
   );

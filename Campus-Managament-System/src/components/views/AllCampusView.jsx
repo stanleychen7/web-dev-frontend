@@ -6,7 +6,7 @@ const DEFAULT_IMAGE = "https://via.placeholder.com/150?text=No+Image";
 const AllCampusesView = ({ allCampuses = [], onDeleteCampus }) => (
   <div>
     <h1>All Campuses</h1>
-    <Link to="/campus/new">
+    <Link to="/newCampus">
       <button>Add New Campus</button>
     </Link>
     {(!Array.isArray(allCampuses) || allCampuses.length === 0) ? (
@@ -21,7 +21,7 @@ const AllCampusesView = ({ allCampuses = [], onDeleteCampus }) => (
               style={{ width: "100px", height: "100px", objectFit: "cover", marginRight: "1em", borderRadius: "8px" }}
             />
             <div>
-              <Link to={`/campus/${campus.id}`}>
+              <Link to={`/campuses/${campus.id}`}>
                 <strong style={{ fontSize: "1.2em" }}>{campus.name}</strong>
               </Link>
               <div>
