@@ -62,6 +62,7 @@ const NewCampusView = ({ onSubmit }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (validate()) {
+            console.log("Submitting campus:", form);
             if (onSubmit) onSubmit(form);
         }
     };

@@ -14,11 +14,15 @@ function NewCampusContainerWrapper(props) {
 
 class NewCampusContainer extends Component {
   handleSubmit = async (form) => {
-    const newCampus = await this.props.addCampus(form);
+    const cleanedForm = {
+        name: form.name.trim(),
+        address: form.address.trim(),
+        description: form.description?.trim() || null,
+        imageUrl: form.imageUrl?.trim() || null,
+    }
+    const newCampus = await this.props.addCampus(cleanedForm);
     if (newCampus && newCampus.id) {
-      this.props.navigate(`/campuses/${newCampus.id}`);
-    } else {
-      this.props.navigate('/campuses');
+      this.props.navigate(`/campuses`);
     }
   };
 
