@@ -41,3 +41,18 @@ export const fetchStudent = (student) => ({
   type: at.FETCH_STUDENT,
   payload: student,
 });
+
+export const addCampus = (campus) => ({
+  type: at.ADD_CAMPUS,
+  payload: campus,
+});
+
+export const editCampus = (campus) => ({
+  type: at.EDIT_CAMPUS,
+  payload: campus,
+});
+
+export const deleteCampus = (campusId) => ({
+  type: at.DELETE_CAMPUS,
+  payload: campusId,
+});
