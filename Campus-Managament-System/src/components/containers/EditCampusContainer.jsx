@@ -18,7 +18,8 @@ class EditCampusContainer extends Component {
   }
 
   handleSubmit = async (form) => {
-    const updatedCampus = await this.props.editCampus(this.props.campusId, form);
+    const cleanedForm = { ...form, imageUrl: form.imageUrl?.trim() === "" ? null : form.imageUrl };
+    const updatedCampus = await this.props.editCampus(this.props.campusId, cleanedForm);
     if (updatedCampus && updatedCampus.id) {
       this.props.navigate(`/campuses/${updatedCampus.id}`);
     }

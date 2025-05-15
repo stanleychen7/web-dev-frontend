@@ -7,7 +7,7 @@ const SingleStudentView = ({ student }) => {
   return (
     <div>
       <h1>
-        {student.firstname} {student.lastname}
+        {student.firstName} {student.lastName}
       </h1>
       <p>
         <strong>Email:</strong> {student.email}
@@ -23,6 +23,11 @@ const SingleStudentView = ({ student }) => {
           <span>This student is not enrolled in any campus.</span>
         )}
       </p>
+      <div style={{ marginTop: "1em" }}>
+        <Link to={`/students/${student.id}/edit`}>
+          <button>Edit Student</button>
+        </Link>
+      </div>
     </div>
   );
 };

@@ -46,7 +46,6 @@ const EditCampusView = ({ campus, onSubmit }) => {
     });
     const [errors, setErrors] = useState({});
 
-    // Populate form with campus data when loaded
     useEffect(() => {
         if (campus?.id) {
             setForm({

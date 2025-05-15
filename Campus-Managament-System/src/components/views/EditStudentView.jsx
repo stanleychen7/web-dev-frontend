@@ -1,7 +1,7 @@
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { makeStyles } from '@mui/styles';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const useStyles = makeStyles({
     formContainer: {
@@ -36,7 +36,7 @@ const useStyles = makeStyles({
     },
 });
 
-const NewStudentView = ({ onSubmit, campusId }) => {
+const EditStudentView = ({ student, onSubmit }) => {
     const classes = useStyles();
     const [form, setForm] = useState({
         firstName: '',
@@ -44,9 +44,22 @@ const NewStudentView = ({ onSubmit, campusId }) => {
         email: '',
         imageUrl: '',
         gpa: '',
-        campusId: campusId || '',
+        campusId: '',
     });
     const [errors, setErrors] = useState({});
+
+    useEffect(() => {
+        if (student?.id) {
+            setForm({
+                firstName: student.firstName || '',
+                lastName: student.lastName || '',
+                email: student.email || '',
+                imageUrl: student.imageUrl || '',
+                gpa: student.gpa !== undefined && student.gpa !== null ? String(student.gpa) : '',
+                campusId: student.campusId ? String(student.campusId) : '',
+            });
+        }
+    }, [student]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -69,10 +82,12 @@ const NewStudentView = ({ onSubmit, campusId }) => {
         }
     };
 
+    if (!student) return <p>Loading student data...</p>;
+
     return (
         <form className={classes.formContainer} onSubmit={handleSubmit} noValidate>
             <Typography variant="h5" gutterBottom>
-                Add New Student
+                Edit Student
             </Typography>
             <div className={classes.formField}>
                 <label>
@@ -145,15 +160,25 @@ const NewStudentView = ({ onSubmit, campusId }) => {
                     style={{ width: '100%', padding: 8, marginTop: 4 }}
                 />
             </div>
+            <div className={classes.formField}>
+                <label>Campus ID</label>
+                <input
+                    type="text"
+                    name="campusId"
+                    value={form.campusId}
+                    onChange={handleChange}
+                    style={{ width: '100%', padding: 8, marginTop: 4 }}
+                />
+            </div>
             <Button
                 type="submit"
                 variant="contained"
                 className={classes.submitButton}
             >
-                Submit
+                Save Changes
             </Button>
         </form>
     );
 };
 
-export default NewStudentView;
+export default EditStudentView;

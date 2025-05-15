@@ -1,7 +1,7 @@
 import Header from './Header'
 import { Component } from 'react'
 import { connect } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 import NewStudentView from '../views/NewStudentView'
 import { addStudentThunk } from '../../store/thunk'
@@ -9,7 +9,10 @@ import { addStudentThunk } from '../../store/thunk'
 // Wrapper to use hooks in class component
 function NewStudentContainerWrapper(props) {
   const navigate = useNavigate();
-  return <NewStudentContainer {...props} navigate={navigate} />;
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const campusId = params.get('campusId');
+  return <NewStudentContainer {...props} navigate={navigate} campusId = {campusId} />;
 }
 
 class NewStudentContainer extends Component {
@@ -19,11 +22,15 @@ class NewStudentContainer extends Component {
         lastName: form.lastName.trim(),
         email: form.email.trim(),
         imageUrl: form.imageUrl?.trim() || null,
-        gpa: form.gpa.trim() || 0
+        gpa: form.gpa.trim() || 0,
+        campusId: form.campusId || this.props.campusId || null,
     };
     const newStudent = await this.props.addStudent(cleanedForm);
     if (newStudent && newStudent.id) {
-      this.props.navigate('/students');
+      if (cleanedForm.campusId) {
+        this.props.navigate(`/campuses/${cleanedForm.campusId}`);
+      } else {
+      this.props.navigate('/students'); }
     }
   };
 
