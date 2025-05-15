@@ -1,35 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import {
+  HomePageContainer,
+  AllCampusesContainer,
+  StudentContainer,
+  AllStudentsContainer,
+  CampusContainer,
+  NewStudentContainer,
+  NewCampusContainer,
+  EditCampus,
+  EditStudent
+} from './components/containers';
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="App">
+      <Routes>
+        <Route path="/" element={<HomePageContainer />} />
+        <Route path="/campuses" element={<AllCampusesContainer />} />
+        <Route path="/students/:studentId" element={<StudentContainer/>} />
+        <Route path="/campuses/:campusId" element={<CampusContainer/>} />
+        <Route path='/students' element={<AllStudentsContainer/>} />
+        <Route path='/newStudent' element={<NewStudentContainer/>} />
+        <Route path='/newCampus' element={<NewCampusContainer/>} />
+        <Route path='/campuses/:campusId/edit' element={<EditCampus/>} />
+        <Route path='/students/:studentId/edit' element={<EditStudent/>} />
+      </Routes>        
+    </div>
+  );
 }
 
-export default App
+export default App;
